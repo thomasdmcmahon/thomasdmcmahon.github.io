@@ -48,19 +48,7 @@ function Nav() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 2rem" }}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: 56 }}>
-          <div
-            style={{ cursor: "pointer" }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            <div style={{ fontSize: "0.95rem", fontWeight: 500, color: "#2e5440", letterSpacing: "-0.01em" }}>
-              Thomas Dalen McMahon
-            </div>
-            <div style={{ fontSize: "0.75rem", color: "#6b6560", fontWeight: 300, marginTop: "0.1rem" }}>
-              Oslo, Norway
-            </div>
-          </div>
-
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", height: 56 }}>
           <nav style={{ display: "flex", gap: "2rem" }} className="hidden-mobile">
             {NAV_LINKS.map((link) => (
               <button
@@ -138,17 +126,69 @@ function Hero() {
 
   return (
     <section style={{ maxWidth: 1100, margin: "0 auto", padding: "4rem 2rem 3rem", fontFamily: "'DM Sans', sans-serif" }}>
-      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "3rem" }} className="hero-inner">
-        {/* Text */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "minmax(260px, 0.75fr) minmax(0, 1fr)", alignItems: "center", gap: "4rem" }} className="hero-inner">
+        <div>
+          <div style={{ marginBottom: "1.75rem" }} className="hero-photo">
+            {PHOTO_SRC ? (
+              <img
+                src={PHOTO_SRC}
+                alt="Thomas Dalen McMahon"
+                style={{
+                  width: 220, height: 275,
+                  objectFit: "cover", objectPosition: "center top",
+                  borderRadius: 2, display: "block",
+                  border: "1px solid rgba(28,25,23,0.1)",
+                }}
+              />
+            ) : (
+              <div
+                style={{
+                  width: 220, height: 275,
+                  backgroundColor: "#e5e0d8",
+                  border: "1px dashed rgba(28,25,23,0.2)",
+                  borderRadius: 2,
+                  display: "flex", flexDirection: "column",
+                  alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                }}
+              >
+                <span style={{ fontFamily: "'Newsreader', serif", fontSize: "2.5rem", color: "#2e5440", fontWeight: 300 }}>
+                  TM
+                </span>
+                <span style={{ fontSize: "0.7rem", color: "#6b6560", fontFamily: "'DM Sans', sans-serif", textAlign: "center", padding: "0 0.5rem", lineHeight: 1.4 }}>
+                  Thomas Dalen McMahon
+                </span>
+              </div>
+            )}
+          </div>
+
           <h1
             style={{
               fontFamily: "'Newsreader', serif",
               fontSize: "clamp(1.9rem, 4vw, 3.2rem)",
               fontWeight: 300,
+              lineHeight: 1.1,
+              color: "#1c1917",
+              maxWidth: 420,
+              marginBottom: "0.5rem",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            Thomas Dalen McMahon
+          </h1>
+          <p style={{ fontSize: "0.9rem", color: "#6b6560", fontWeight: 300, margin: 0 }}>
+            Oslo, Norway
+          </p>
+        </div>
+
+        <div style={{ minWidth: 0 }}>
+          <h2
+            style={{
+              fontFamily: "'Newsreader', serif",
+              fontSize: "clamp(1.75rem, 3vw, 2.55rem)",
+              fontWeight: 300,
               lineHeight: 1.25,
               color: "#1c1917",
-              maxWidth: 620,
+              maxWidth: 560,
               marginBottom: "1.75rem",
               letterSpacing: "-0.01em",
             }}
@@ -156,7 +196,7 @@ function Hero() {
             Informatics student focused on language technology,{" "}
             <em style={{ fontStyle: "italic", color: "#2e5440" }}>sustainability</em>,
             {" "}and responsible digital systems.
-          </h1>
+          </h2>
 
           <p
             style={{
@@ -218,47 +258,12 @@ function Hero() {
             </button>
           </div>
         </div>
-
-        {/* Photo */}
-        <div style={{ flexShrink: 0, alignSelf: "flex-start", paddingTop: "2.5rem" }} className="hero-photo">
-          {PHOTO_SRC ? (
-            <img
-              src={PHOTO_SRC}
-              alt="Thomas Dalen McMahon"
-              style={{
-                width: 160, height: 200,
-                objectFit: "cover", objectPosition: "center top",
-                borderRadius: 2, display: "block",
-                border: "1px solid rgba(28,25,23,0.1)",
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                width: 160, height: 200,
-                backgroundColor: "#e5e0d8",
-                border: "1px dashed rgba(28,25,23,0.2)",
-                borderRadius: 2,
-                display: "flex", flexDirection: "column",
-                alignItems: "center", justifyContent: "center", gap: "0.5rem",
-              }}
-            >
-              <span style={{ fontFamily: "'Newsreader', serif", fontSize: "2.5rem", color: "#2e5440", fontWeight: 300 }}>
-                TM
-              </span>
-              <span style={{ fontSize: "0.7rem", color: "#6b6560", fontFamily: "'DM Sans', sans-serif", textAlign: "center", padding: "0 0.5rem", lineHeight: 1.4 }}>
-                Thomas Dalen McMahon
-              </span>
-            </div>
-          )}
-        </div>
       </div>
 
       <style>{`
         @media (max-width: 700px) {
-          .hero-inner { flex-direction: column-reverse !important; }
-          .hero-photo { align-self: auto !important; padding-top: 0 !important; }
-          .hero-photo img, .hero-photo > div { width: 100px !important; height: 125px !important; }
+          .hero-inner { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+          .hero-photo img, .hero-photo > div { width: 150px !important; height: 188px !important; }
         }
       `}</style>
     </section>
